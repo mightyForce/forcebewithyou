@@ -118,45 +118,45 @@ Use fictional names, phone numbers, emails, VIN-like identifiers, and dealer det
 
 ### Source A: CRM riders
 
-`riders.csv`
+[`riders.csv`](svt-demo-data/riders.csv)
 
 | Field | Example | Purpose |
 |---|---|---|
-| customer_id | C-1001 | Source key |
+| customer_id | SVT-1001 | Source key |
 | first_name | Ananya | Profile |
 | last_name | Rao | Profile |
 | email | ananya.rao@example.test | Identity match |
 | phone | +91-9000001001 | Identity match |
 | city | Bengaluru | Dealer selection |
 | preferred_language | English | Personalization |
-| service_consent | true | Action guardrail |
+| contact_permission | true | Action guardrail |
 
 ### Source B: dealer and service history
 
-`service_history.csv`
+[`vehicle_service_history.csv`](svt-demo-data/vehicle_service_history.csv)
 
 | Field | Example | Purpose |
 |---|---|---|
-| service_id | S-5011 | Event key |
-| customer_id | C-1001 | Relationship |
-| vehicle_id | V-2001 | Vehicle relationship |
-| model | Demo Apache 200 | Context |
-| registration_date | 2025-04-15 | Context |
+| service_visit_id | SVT-SVC-5001 | Event key |
+| customer_id | SVT-1001 | Relationship |
+| vehicle_id | SVT-VEH-2001 | Vehicle relationship |
+| vehicle_model | SVT Stride 200 Demo | Context |
+| vehicle_registration_date | 2024-08-12 | Context |
 | last_service_date | 2026-01-20 | Due calculation |
 | last_service_odometer_km | 7200 | Due calculation |
 | current_odometer_km | 10400 | Due calculation |
 | warranty_end_date | 2028-04-14 | Context |
-| preferred_dealer_id | D-101 | Recommendation |
+| preferred_dealer | SVT Bengaluru Central | Recommendation |
 
 ### Source C: engagement
 
-`engagement.csv`
+[`digital_engagement.csv`](svt-demo-data/digital_engagement.csv)
 
 | Field | Example | Purpose |
 |---|---|---|
-| engagement_id | E-9011 | Event key |
-| customer_id | C-1001 | Relationship |
-| event_type | ServicePageViewed | Intent signal |
+| engagement_id | SVT-ENG-9001 | Event key |
+| customer_id | SVT-1001 | Relationship |
+| event_type | ModelPageViewed | Intent signal |
 | event_timestamp | 2026-08-16T10:30:00Z | Recency |
 | channel | MobileApp | Context |
 
@@ -169,6 +169,21 @@ Use fictional names, phone numbers, emails, VIN-like identifiers, and dealer det
 - Engagement record → an engagement DMO
 
 Use `customer_id` for deterministic reconciliation in the demo, with normalized email and phone as additional match rules. Keep identity rules intentionally simple and explain that production rules need data-quality analysis and governance.
+
+### Data Cloud import steps
+
+1. In **Data Cloud**, open **Data Streams** and select **New**.
+2. Choose **File Upload** and import the three files from [`svt-demo-data`](svt-demo-data/):
+   - `riders.csv`
+   - `vehicle_service_history.csv`
+   - `digital_engagement.csv`
+3. Use `customer_id` as each source's primary key. Keep `email` and `phone` on all three sources for identity matching.
+4. Map rider profile fields to **Individual**, **Contact Point Email**, and **Contact Point Phone**. Map vehicle/service fields to the available vehicle and engagement/service DMOs; use a custom DMO only where the standard model does not fit.
+5. Configure identity resolution with `customer_id` as the deterministic match rule. Add normalized email and phone as supporting rules.
+6. Run the data streams and identity rules. Confirm that Ananya (`ananya.rao@example.test`) resolves to a single profile with a vehicle/service record and two digital engagement events.
+7. Keep Meera's `contact_permission` as `false`; it is the negative test for the Agentforce follow-up action.
+
+The files are synthetic. Do not upload production customer records to this Developer Edition.
 
 ### Calculated insight
 
@@ -249,13 +264,13 @@ If structured Data Cloud retrieval is limited in the selected Developer Edition,
 
 ### Phase 2: Data Cloud
 
-1. Prepare 8–12 synthetic riders, including:
+1. Prepare synthetic riders, including:
    - duplicate source records that should unify,
    - one high-readiness rider,
    - one medium-readiness rider,
    - one rider with conflicting identifiers,
    - one rider without contact consent.
-2. Ingest the three CSV sources.
+2. Ingest the three CSV sources in [`svt-demo-data`](svt-demo-data/).
 3. Map fields to the selected DMOs.
 4. Configure and run identity resolution.
 5. Validate unified profiles and source-record links.

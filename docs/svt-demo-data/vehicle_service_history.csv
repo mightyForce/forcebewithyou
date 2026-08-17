@@ -1,0 +1,7 @@
+service_visit_id,customer_id,email,phone,vehicle_id,vehicle_model,vehicle_registration_date,last_service_date,last_service_odometer_km,current_odometer_km,warranty_end_date,preferred_dealer,source_system
+SVT-SVC-5001,SVT-1001,ananya.rao@example.test,+919000001001,SVT-VEH-2001,SVT Stride 200 Demo,2024-08-12,2026-01-20,7200,10400,2027-08-11,SVT Bengaluru Central,DealerDMS
+SVT-SVC-5002,SVT-1002,vikram.mehta@example.test,+919000001002,SVT-VEH-2002,SVT Stride 200 Demo,2025-02-18,2026-06-10,5100,6200,2028-02-17,SVT Pune West,DealerDMS
+SVT-SVC-5003,SVT-1003,meera.iyer@example.test,+919000001003,SVT-VEH-2003,SVT Urban 125 Demo,2023-11-03,2026-03-04,16800,17200,2026-11-02,SVT Chennai North,DealerDMS
+SVT-SVC-5004,SVT-1004,arjun.kapoor@example.test,+919000001004,SVT-VEH-2004,SVT Stride 200 Demo,2022-07-29,2026-02-14,22100,25900,2025-07-28,SVT Delhi South,DealerDMS
+SVT-SVC-5005,SVT-1005,nisha.patel@example.test,+919000001005,SVT-VEH-2005,SVT Urban 125 Demo,2025-01-16,2026-07-01,2800,3600,2028-01-15,SVT Ahmedabad One,DealerDMS
+SVT-SVC-5006,SVT-1006,rahul.nair@example.test,+919000001006,SVT-VEH-2006,SVT Stride 200 Demo,2024-04-21,2026-04-22,9400,12100,2027-04-20,SVT Kochi Central,DealerDMS

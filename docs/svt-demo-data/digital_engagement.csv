@@ -1,0 +1,9 @@
+engagement_id,customer_id,email,phone,event_type,event_timestamp,channel,campaign_name,consent_at_event,source_system
+SVT-ENG-9001,SVT-1001,ananya.rao@example.test,+919000001001,ModelPageViewed,2026-08-16T10:30:00Z,MobileApp,SVT Demo Upgrade Journey,true,Marketing
+SVT-ENG-9002,SVT-1001,ananya.rao@example.test,+919000001001,ConfiguratorStarted,2026-08-16T10:35:00Z,MobileApp,SVT Demo Upgrade Journey,true,Marketing
+SVT-ENG-9003,SVT-1002,vikram.mehta@example.test,+919000001002,EmailOpened,2026-08-14T08:00:00Z,Email,SVT Demo Upgrade Journey,true,Marketing
+SVT-ENG-9004,SVT-1003,meera.iyer@example.test,+919000001003,ModelPageViewed,2026-08-15T12:10:00Z,Web,SVT Demo Upgrade Journey,false,Marketing
+SVT-ENG-9005,SVT-1004,arjun.kapoor@example.test,+919000001004,ConfiguratorStarted,2026-08-17T09:20:00Z,Web,SVT Demo Upgrade Journey,true,Marketing
+SVT-ENG-9006,SVT-1004,arjun.kapoor@example.test,+919000001004,DealerLocatorViewed,2026-08-17T09:23:00Z,Web,SVT Demo Upgrade Journey,true,Marketing
+SVT-ENG-9007,SVT-1005,nisha.patel@example.test,+919000001005,EmailOpened,2026-08-10T07:45:00Z,Email,SVT Demo Upgrade Journey,true,Marketing
+SVT-ENG-9008,SVT-1006,rahul.nair@example.test,+919000001006,ModelPageViewed,2026-08-13T16:10:00Z,MobileApp,SVT Demo Upgrade Journey,true,Marketing
