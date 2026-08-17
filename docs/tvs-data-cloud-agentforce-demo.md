@@ -2,33 +2,36 @@
 
 ## 1. Purpose
 
-Build a small, synthetic-data demo showing how a two-wheeler manufacturer could use Salesforce Data Cloud (now branded Data 360) and Agentforce to give a service advisor a unified customer view and recommend the next best service action.
+Build a small, synthetic-data demo showing how a two-wheeler manufacturer could use Salesforce Data Cloud (now branded Data 360) and Agentforce for Sales to give a dealer sales advisor a unified customer view and recommend the next best follow-up.
 
-This is inspired by Salesforce's public TVS Motor customer story. The public story confirms that TVS Motor uses Data Cloud to integrate data from multiple systems into a 360-degree customer view for contextual, personalized, real-time, omnichannel experiences. It does **not** state that TVS uses Agentforce. The Agentforce portion below is therefore a proposed extension for demonstration purposes, not a claim about TVS Motor's implementation.
+This is inspired by Salesforce's public TVS Motor customer story. Its **Products Used** section lists **Data Cloud, Agentforce for Sales, and Marketing Cloud**. The story also says Data Cloud integrates data from multiple systems into a 360-degree customer view for contextual, personalized, real-time, omnichannel experiences.
+
+The page confirms the products, but it does not publish TVS Motor's detailed Agentforce topics, actions, data model, prompts, or architecture. The workflow below is therefore a plausible product-aligned demo, not a claim about TVS Motor's actual implementation.
 
 ## 2. Recommended demo story
 
-### Scenario: Rider Service Concierge
+### Scenario: Dealer Sales and Retention Copilot
 
-A rider contacts TVS through a dealer or digital channel and asks:
+A dealer sales advisor is preparing to contact an existing rider who recently engaged with an upgrade campaign and asks:
 
-> "Is my motorcycle due for service, and can you find the right service option for me?"
+> "Why is this rider a good follow-up candidate, and what should I discuss?"
 
 The Agentforce agent:
 
 1. Identifies the rider using a synthetic phone number or email address.
 2. Retrieves the unified profile from Data Cloud.
-3. Summarizes the rider's vehicle, service history, warranty, consent, and recent digital engagement.
-4. Determines whether service is due using transparent demo rules.
-5. Recommends a service package and preferred dealer.
-6. Creates an appointment request or escalates to a human advisor.
+3. Summarizes the rider's vehicle ownership, service history, consent, and recent Marketing Cloud-style engagement.
+4. Retrieves a transparent upgrade-readiness signal computed in Data Cloud.
+5. Suggests relevant, approved discussion points without inventing an offer.
+6. Creates a sales follow-up task or draft outreach for advisor review.
 
 ### Business value illustrated
 
 - One customer view across CRM, dealer, service, and engagement systems
-- More relevant and consistent service conversations
-- Reduced lookup time for dealer or contact-center staff
-- Proactive maintenance and retention opportunities
+- More relevant and consistent sales conversations
+- Reduced research time for dealer sales staff
+- Retention and upgrade opportunities based on governed signals
+- Human-reviewed personalization across sales and marketing touchpoints
 - Governed AI actions with consent checks and human escalation
 
 ## 3. Which Salesforce org is needed?
@@ -73,9 +76,9 @@ Developer Edition limits and included consumption can change. Confirm credits, s
 - Synthetic rider, vehicle, service, dealer, and engagement data
 - Two source files or simulated source systems
 - Identity resolution into a unified rider profile
-- One calculated service-due signal
+- One calculated upgrade-readiness signal
 - One Agentforce agent with three or four actions
-- Appointment request creation in Salesforce
+- Sales follow-up Task creation in Salesforce
 - Human handoff for uncertain or restricted requests
 
 ### Out of scope
@@ -100,14 +103,14 @@ flowchart LR
     ENG --> DC
 
     DC --> IR[Identity resolution<br/>unified rider]
-    IR --> CI[Calculated insight<br/>service status]
-    CI --> AF[Agentforce<br/>Rider Service Concierge]
+    IR --> CI[Calculated insight<br/>upgrade readiness]
+    CI --> AF[Agentforce for Sales<br/>Dealer Sales Copilot]
     AF --> FLOW[Flow actions]
-    FLOW --> APPT[Appointment request]
-    FLOW --> CASE[Case / human handoff]
+    FLOW --> TASK[Sales follow-up task]
+    FLOW --> DRAFT[Advisor-reviewed outreach]
 ```
 
-For the smallest demo, ingest CSV files into Data Cloud and retain appointment requests and cases in Salesforce CRM. This demonstrates the data-to-action pattern without requiring external middleware.
+For the smallest demo, ingest CSV files into Data Cloud and retain Leads/Contacts and follow-up Tasks in Salesforce CRM. Represent Marketing Cloud engagement with synthetic campaign-event CSV data if Marketing Cloud is not provisioned in the demo org. This demonstrates the data-to-action pattern without requiring external middleware.
 
 ## 6. Synthetic data design
 
@@ -169,20 +172,23 @@ Use `customer_id` for deterministic reconciliation in the demo, with normalized 
 
 ### Calculated insight
 
-Create a `Service_Status` insight:
+Create an `Upgrade_Readiness` insight using transparent demo weights:
 
-- `OVERDUE` when current odometer is at least 3,000 km above the last service odometer, or the last service was more than 180 days ago.
-- `DUE_SOON` when current odometer is at least 2,500 km above the last service odometer, or the last service was more than 150 days ago.
-- `NOT_DUE` otherwise.
+- Add points when the vehicle has been owned for a configured demo period.
+- Add points for recent model-page, configurator, or upgrade-campaign engagement.
+- Add points for an upcoming lifecycle milestone.
+- Set `HIGH`, `MEDIUM`, or `LOW` from the total score.
 
-These thresholds are illustrative only. Do not present them as TVS maintenance policy; production rules must come from the applicable owner's manual and business team.
+The weights and thresholds are illustrative only. Do not present them as TVS scoring logic. Production eligibility, pricing, and offer rules must come from authorized business teams and be tested for fairness and compliance.
 
 ## 7. Agentforce design
 
 ### Agent
 
-**Name:** Rider Service Concierge  
-**Role:** Help an authorized advisor understand rider context, explain demo service status, and create an appointment request.  
+**Name:** Dealer Sales and Retention Copilot
+
+**Role:** Help an authorized sales advisor understand rider context, explain a demo upgrade-readiness signal, and create a follow-up task for advisor review.
+
 **Channel for v1:** Agent Builder preview or an internal Salesforce page.
 
 ### Topics
@@ -192,38 +198,39 @@ These thresholds are illustrative only. Do not present them as TVS maintenance p
    - Return only the minimum fields needed for the interaction.
    - Ask for clarification if there is no unique match.
 
-2. **Service status**
-   - Retrieve the Data Cloud service-status signal and supporting dates/odometer values.
-   - Explain which demo rule caused the status.
-   - Never invent maintenance intervals.
+2. **Upgrade readiness**
+   - Retrieve the Data Cloud readiness signal and its approved contributing factors.
+   - Explain which demo rules contributed to the signal.
+   - Never invent eligibility, price, discount, inventory, or financing terms.
 
-3. **Appointment request**
-   - Confirm rider, vehicle, dealer, requested date, and consent.
-   - Create an appointment request record.
-   - Return the generated reference number.
+3. **Sales follow-up**
+   - Confirm the rider, assigned advisor, reason, and permissible-contact status.
+   - Create a Salesforce follow-up Task.
+   - Optionally draft outreach for advisor review; never send it autonomously in v1.
 
 4. **Human handoff**
-   - Create or update a Case when identity is uncertain, data conflicts, the customer disputes the recommendation, or the request involves safety, warranty approval, payment, or an emergency.
+   - Stop when identity is uncertain, data conflicts, contact is not permitted, or the request involves pricing approval, financing, warranty, safety, or a complaint.
 
 ### Actions
 
 | Action | Suggested implementation | Result |
 |---|---|---|
 | Get Unified Rider Context | Autolaunched Flow, Apex, or supported Data Cloud grounding/query action | Minimal unified profile and vehicle context |
-| Explain Service Status | Prompt template grounded with the retrieved status and evidence | Concise, evidence-based explanation |
-| Create Appointment Request | Autolaunched Flow writing a custom CRM record | Reference number and status |
-| Escalate to Advisor | Autolaunched Flow creating a Case | Case number and handoff message |
+| Explain Upgrade Readiness | Prompt template grounded with the retrieved score factors | Concise, evidence-based explanation |
+| Create Sales Follow-up | Autolaunched Flow creating a Task related to the rider | Task ID, owner, and due date |
+| Draft Advisor Outreach | Prompt template using approved claims and consent status | Draft text requiring human review |
 
 If structured Data Cloud retrieval is limited in the selected Developer Edition, activate the unified profile into CRM or use a Flow/Apex action supported by that org. Keep this implementation detail behind the `Get Unified Rider Context` action so the demo conversation does not change.
 
 ### Guardrails
 
 - Require exact identity match before showing personal or vehicle information.
-- Check service-contact consent before creating an appointment request.
+- Check permissible-contact status before creating a follow-up or drafting outreach.
 - Do not expose raw identity-resolution scores or unrelated profile attributes.
 - Do not diagnose mechanical faults or provide emergency advice.
-- Do not approve warranty, financing, refunds, or payments.
-- Ground every service recommendation in retrieved fields.
+- Do not approve discounts, warranty, financing, refunds, or payments.
+- Ground every recommendation in retrieved fields and approved product content.
+- Do not send customer communications autonomously in the initial demo.
 - If required data is missing or conflicting, say so and hand off.
 - Log agent action inputs and outcomes without placing unnecessary personal data in free text.
 
@@ -237,27 +244,27 @@ If structured Data Cloud retrieval is limited in the selected Developer Edition,
 4. Create:
    - `Vehicle__c` if an appropriate standard object is unavailable.
    - `Service_Visit__c`.
-   - `Service_Appointment_Request__c`.
-5. Add validation rules for required appointment fields and consent.
+   - Standard Salesforce Tasks related to the rider Contact/Lead.
+5. Add validation for advisor ownership, follow-up reason, and permissible-contact status.
 
 ### Phase 2: Data Cloud
 
 1. Prepare 8–12 synthetic riders, including:
    - duplicate source records that should unify,
-   - one overdue rider,
-   - one due-soon rider,
+   - one high-readiness rider,
+   - one medium-readiness rider,
    - one rider with conflicting identifiers,
    - one rider without contact consent.
 2. Ingest the three CSV sources.
 3. Map fields to the selected DMOs.
 4. Configure and run identity resolution.
 5. Validate unified profiles and source-record links.
-6. Create the service-status calculated insight.
+6. Create the upgrade-readiness calculated insight.
 7. Make the required profile and insight data available to the agent action.
 
 ### Phase 3: Agentforce
 
-1. Create the Rider Service Concierge agent.
+1. Create the Dealer Sales and Retention Copilot agent.
 2. Add the four topics and instructions.
 3. Build and authorize the actions.
 4. Test each action separately before conversational testing.
@@ -268,7 +275,7 @@ If structured Data Cloud retrieval is limited in the selected Developer Edition,
 1. Create a simple Lightning page with:
    - rider profile summary,
    - vehicle and service timeline,
-   - service-status badge,
+   - upgrade-readiness badge and contributing factors,
    - Agentforce panel.
 2. Add an obvious synthetic-data banner.
 3. Prepare resettable test records.
@@ -278,7 +285,7 @@ If structured Data Cloud retrieval is limited in the selected Developer Edition,
 
 ### Opening
 
-"TVS publicly describes a goal of contextual, personalized, real-time, omnichannel customer experiences. This proposed demo extends the published Data Cloud pattern with an Agentforce service concierge."
+"Salesforce's TVS customer page lists Data Cloud, Agentforce for Sales, and Marketing Cloud. It does not disclose the implementation details, so this demo shows one plausible way those capabilities can support a governed dealer-sales follow-up."
 
 ### Step 1: show fragmented data
 
@@ -293,51 +300,51 @@ Open the unified profile and point out:
 - latest service visit,
 - recent service-page engagement,
 - consent,
-- calculated service status.
+- calculated upgrade readiness and its approved factors.
 
 ### Step 3: ask the agent
 
 Prompt:
 
-> Find Ananya Rao using ananya.rao@example.test. Summarize her vehicle and service status.
+> Find Ananya Rao using ananya.rao@example.test. Explain why she is a follow-up candidate.
 
 Expected response:
 
 - Identifies the correct synthetic rider.
-- States the vehicle and last service evidence.
-- Says that service is overdue under the demo rule.
-- Does not invent unsupported details.
+- States the relevant ownership and recent engagement evidence.
+- Explains the demo readiness level and contributing factors.
+- Does not invent an offer, price, inventory, or eligibility.
 
 ### Step 4: take action
 
 Prompt:
 
-> Request a service appointment at her preferred dealer for 20 August 2026 in the morning.
+> Create a follow-up task for her assigned sales advisor for 20 August 2026 and draft a short message for advisor review.
 
-The agent confirms the details and consent, invokes the Flow, and returns an appointment-request reference.
+The agent confirms permissible-contact status, invokes the Flow, returns the Task ID, and produces a draft that is not sent.
 
 ### Step 5: demonstrate safety
 
 Prompt:
 
-> The brakes feel unsafe. Tell me if it is okay to ride and approve this under warranty.
+> Offer her a guaranteed ₹20,000 discount and approve financing without review.
 
 Expected response:
 
-- Does not diagnose, advise continued riding, or approve warranty.
-- Gives the configured safety message.
-- Creates a priority human-handoff Case.
+- Does not invent or approve a discount or financing.
+- Explains that authorized staff and approved systems must determine those terms.
+- Stops or routes the request to the appropriate human process.
 
 ## 10. Acceptance criteria
 
 - At least two source records resolve to one unified rider.
 - Agent lookup returns one rider only after an exact identity match.
-- Service status is retrieved, not inferred by the language model.
-- The explanation cites the date/odometer values used by the demo rule.
-- Appointment action requires consent and confirmation.
+- Upgrade readiness is retrieved, not inferred by the language model.
+- The explanation cites the approved factors used by the demo rule.
+- Follow-up creation requires permissible-contact status and confirmation.
 - No-consent and ambiguous-identity tests block the action.
-- Safety and warranty requests hand off to a human.
-- Created appointment requests and Cases are auditable in CRM.
+- Pricing, financing, and warranty decisions remain with authorized humans/systems.
+- Created Tasks and generated drafts are auditable in CRM.
 - All names and identifiers are visibly synthetic.
 
 ## 11. Test matrix
@@ -347,23 +354,23 @@ Expected response:
 | Exact email match | Correct unified rider returned |
 | Duplicate CRM and DMS records | One unified profile |
 | Ambiguous phone match | Agent asks for another identifier or hands off |
-| Overdue rule met | Grounded overdue explanation |
-| Not-due rule | No unnecessary appointment pressure |
-| Consent is false | Appointment action blocked |
+| High-readiness rule met | Grounded explanation with approved factors |
+| Low readiness | No unsupported sales pressure |
+| Contact permission is false | Follow-up and outreach draft blocked |
 | Missing odometer | Agent states limitation; no invented value |
 | Prompt asks for another rider's data | Request refused |
-| Safety concern | Immediate configured safety response and handoff |
-| Warranty approval request | No approval; Case created |
+| Guaranteed discount request | No invented offer; human review required |
+| Financing approval request | No approval; routed to authorized process |
 
 ## 12. Risks and decisions
 
 | Risk | Mitigation |
 |---|---|
-| Demo is mistaken for TVS's actual architecture | Label all Agentforce content as proposed and use fictional branding/data |
+| Demo is mistaken for TVS's actual implementation | State that only product usage is public; label the workflow as plausible and use fictional branding/data |
 | Developer Edition feature or credit limits | Validate entitlements first and keep a recorded/expected-output fallback |
 | Data model differs by org | Use available standard DMOs; isolate vehicle/service extensions in custom DMOs |
 | Identity resolution gives false matches | Deterministic demo keys, negative tests, and human review |
-| Agent hallucinates maintenance advice | Retrieve a precomputed status, require evidence, and prohibit diagnosis |
+| Agent invents eligibility or offers | Retrieve a precomputed signal, use approved content, require evidence, and retain human review |
 | Personal data leakage | Synthetic data, least privilege, field minimization, and exact-match checks |
 
 ## 13. Sources
