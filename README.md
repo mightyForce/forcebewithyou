@@ -2,4 +2,4 @@
 
 ## Demo guides
 
-- [TVS Motor–inspired Data Cloud + Agentforce demo](docs/tvs-data-cloud-agentforce-demo.md)
+- [SVT Motors Data Cloud + Agentforce demo](docs/svt-data-cloud-agentforce-demo.md)

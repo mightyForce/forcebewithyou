@@ -1,12 +1,12 @@
-# TVS Motor–inspired Data Cloud + Agentforce demo
+# SVT Motors Data Cloud + Agentforce demo
 
 ## 1. Purpose
 
 Build a small, synthetic-data demo showing how a two-wheeler manufacturer could use Salesforce Data Cloud (now branded Data 360) and Agentforce for Sales to give a dealer sales advisor a unified customer view and recommend the next best follow-up.
 
-This is inspired by Salesforce's public TVS Motor customer story. Its **Products Used** section lists **Data Cloud, Agentforce for Sales, and Marketing Cloud**. The story also says Data Cloud integrates data from multiple systems into a 360-degree customer view for contextual, personalized, real-time, omnichannel experiences.
+**SVT Motors is a fictional company used only for this demo.** The scenario is inspired by the Salesforce automotive customer story cited in the Sources section. Its **Products Used** section lists **Data Cloud, Agentforce for Sales, and Marketing Cloud**. The story also says Data Cloud integrates data from multiple systems into a 360-degree customer view for contextual, personalized, real-time, omnichannel experiences.
 
-The page confirms the products, but it does not publish TVS Motor's detailed Agentforce topics, actions, data model, prompts, or architecture. The workflow below is therefore a plausible product-aligned demo, not a claim about TVS Motor's actual implementation.
+The reference page confirms the products, but it does not publish the customer's detailed Agentforce topics, actions, data model, prompts, or architecture. The SVT Motors workflow below is therefore a fictional, plausible product-aligned demo.
 
 ## 2. Recommended demo story
 
@@ -83,7 +83,7 @@ Developer Edition limits and included consumption can change. Confirm credits, s
 
 ### Out of scope
 
-- Production TVS data or branding presented as an official TVS implementation
+- Real customer data, trademarks, or branding presented as part of the fictional SVT Motors implementation
 - Live vehicle telemetry
 - Payment, financing, roadside emergency handling, or safety diagnosis
 - Production WhatsApp, telephony, website, or dealer-management-system integration
@@ -179,7 +179,7 @@ Create an `Upgrade_Readiness` insight using transparent demo weights:
 - Add points for an upcoming lifecycle milestone.
 - Set `HIGH`, `MEDIUM`, or `LOW` from the total score.
 
-The weights and thresholds are illustrative only. Do not present them as TVS scoring logic. Production eligibility, pricing, and offer rules must come from authorized business teams and be tested for fairness and compliance.
+The weights and thresholds are illustrative SVT Motors demo logic only. Production eligibility, pricing, and offer rules must come from authorized business teams and be tested for fairness and compliance.
 
 ## 7. Agentforce design
 
@@ -285,7 +285,7 @@ If structured Data Cloud retrieval is limited in the selected Developer Edition,
 
 ### Opening
 
-"Salesforce's TVS customer page lists Data Cloud, Agentforce for Sales, and Marketing Cloud. It does not disclose the implementation details, so this demo shows one plausible way those capabilities can support a governed dealer-sales follow-up."
+"SVT Motors is a fictional manufacturer. This demo is inspired by a Salesforce automotive customer story that lists Data Cloud, Agentforce for Sales, and Marketing Cloud, and it shows one plausible way those capabilities can support a governed dealer-sales follow-up."
 
 ### Step 1: show fragmented data
 
@@ -366,7 +366,7 @@ Expected response:
 
 | Risk | Mitigation |
 |---|---|
-| Demo is mistaken for TVS's actual implementation | State that only product usage is public; label the workflow as plausible and use fictional branding/data |
+| SVT Motors is mistaken for a real company or customer implementation | Display a fictional-demo disclaimer and use only synthetic branding and data |
 | Developer Edition feature or credit limits | Validate entitlements first and keep a recorded/expected-output fallback |
 | Data model differs by org | Use available standard DMOs; isolate vehicle/service extensions in custom DMOs |
 | Identity resolution gives false matches | Deterministic demo keys, negative tests, and human review |
