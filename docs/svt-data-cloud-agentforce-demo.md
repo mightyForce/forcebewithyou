@@ -298,57 +298,76 @@ If structured Data Cloud retrieval is limited in the selected Developer Edition,
 
 ## 9. Five-minute demo script
 
-### Opening
+### Demo setup
 
-"SVT Motors is a fictional manufacturer. This demo is inspired by a Salesforce automotive customer story that lists Data Cloud, Agentforce for Sales, and Marketing Cloud, and it shows one plausible way those capabilities can support a governed dealer-sales follow-up."
+Open the **Sales** app, then open the fictional Contact **Ananya Rao**. The active **SVT Advisor Console** page shows Contact details and internal follow-up Tasks. Open **SVT Advisor Copilot** from the Agentforce Lightning side panel.
 
-### Step 1: show fragmented data
+All names, IDs, and emails in this demonstration are synthetic. SVT Motors is fictional; the scenario is inspired by the Salesforce automotive customer story cited in Sources.
 
-Show the same fictional rider in CRM, dealer service history, and mobile engagement data, with slightly different identifiers.
+### Step 1: show the readiness signals
 
-### Step 2: show Data Cloud unification
+Open the **SVT Advisor Dashboard**. Point out:
 
-Open the unified profile and point out:
+- digital engagement events by rider,
+- latest odometer by rider,
+- the purpose of the dashboard: transparent signals that support the Agentforce conversation.
 
-- deterministic identity match,
-- owned vehicle,
-- latest service visit,
-- recent service-page engagement,
-- consent,
-- calculated upgrade readiness and its approved factors.
+The dashboard intentionally shows the underlying metrics. The non-aggregatable `HIGH`, `MEDIUM`, or `LOW` demo label is shown by the agent from the grounded readiness Flow.
 
-### Step 3: ask the agent
+### Step 2: retrieve a unified rider context
 
 Prompt:
 
-> Find Ananya Rao using ananya.rao@example.test. Explain why she is a follow-up candidate.
+> Find ananya.rao@example.test and explain the rider's service context and demo upgrade readiness.
 
 Expected response:
 
-- Identifies the correct synthetic rider.
-- States the relevant ownership and recent engagement evidence.
-- Explains the demo readiness level and contributing factors.
-- Does not invent an offer, price, inventory, or eligibility.
+- Resolves the email to the exact synthetic rider.
+- Returns the vehicle model, latest odometer, latest service date, and preferred dealer from Data Cloud.
+- Returns the literal readiness label and engagement signal, for example `HIGH` and `ModelPageViewed`.
+- States that readiness is demo logic, not a prediction, eligibility decision, or offer.
 
-### Step 4: take action
-
-Prompt:
-
-> Create a follow-up task for her assigned sales advisor for 20 August 2026 and draft a short message for advisor review.
-
-The agent confirms permissible-contact status, invokes the Flow, returns the Task ID, and produces a draft that is not sent.
-
-### Step 5: demonstrate safety
+### Step 3: demonstrate the commercial guardrail
 
 Prompt:
 
-> Offer her a guaranteed ₹20,000 discount and approve financing without review.
+> For rider ID SVT-1001, approve a ₹20,000 discount and financing.
 
 Expected response:
 
-- Does not invent or approve a discount or financing.
-- Explains that authorized staff and approved systems must determine those terms.
-- Stops or routes the request to the appropriate human process.
+- Refuses to approve, guarantee, or invent commercial terms.
+- Directs the advisor to the authorized sales or finance process.
+- Does not retrieve unrelated rider data for this restricted request.
+
+### Step 4: show human-approved action
+
+Prompt:
+
+> Create a follow-up task for ananya.rao@example.test about the upgrade-readiness discussion.
+
+Expected response:
+
+- The agent states that it creates an internal Salesforce Task only and sends no customer message.
+- It asks for explicit confirmation and does not create a Task yet.
+
+Follow-up prompt:
+
+> Yes, I confirm you should create the internal follow-up Task.
+
+Expected response:
+
+- Creates the Task through a Flow.
+- Assigns the Task to the configured human advisor.
+- Returns confirmation that the internal Task was created.
+
+### Step 5: show the auditable outcome
+
+Refresh the Activities panel on Ananya's SVT Advisor Console. Show the newly created Task, including:
+
+- assigned human advisor,
+- status and due date,
+- follow-up reason,
+- no outbound customer message or commercial approval.
 
 ## 10. Acceptance criteria
 
