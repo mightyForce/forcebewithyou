@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: SVT Engagement Events Ingestion API
+  version: 1.0.0
+  description: Demo schema for streaming lead/rider engagement events into Data Cloud Website Engagement DMO.
+components:
+  schemas:
+    engagement_event:
+      type: object
+      properties:
+        event_id:
+          type: string
+        prospect_id:
+          type: string
+        event_type:
+          type: string
+        event_timestamp:
+          type: string
+          format: date-time
+        model:
+          type: string
+        channel:
+          type: string
+      required:
+        - event_id
+        - prospect_id
+        - event_type
+        - event_timestamp
