@@ -314,6 +314,8 @@ Implemented in **`SVT Get Lead Intent`**:
 
 Create matching **CRM Leads** for all four prospects. Email is the join key between CRM and Data Cloud.
 
+For production-style event ingestion (replacing CSV uploads), see [SVT real-time ingestion guide](svt-realtime-ingestion-guide.md).
+
 ## 7. Agentforce design
 
 Use the **new Agent Builder** (subagents replace the older topic model).
