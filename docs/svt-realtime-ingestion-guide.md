@@ -120,24 +120,36 @@ For the SVT demo, **email** is the join key between CRM Lead and Data Cloud Indi
 
 Add a **Streaming Ingestion API** data stream for engagement events, mapped to the same **Website Engagement** DMO as `lead_intent_events.csv`.
 
-### Step 1 — Create Ingestion API connector
+### Step 1 — Create Ingestion API connector (required before Data Streams)
 
-1. **Setup → Data Cloud → Ingestion API** (or **Data Streams → New → Ingestion API**).
-2. Create a connector, e.g. `SVT Engagement Events API`.
-3. Define an object/schema aligned with your demo:
+**Ingestion API does not appear under Data Streams → New until this step is done.**
 
-| API field | Type | Example |
-|---|---|---|
-| `event_id` | Text | LEAD-EVT-9001 |
-| `prospect_id` | Text | LEAD-2001 |
-| `event_type` | Text | TestRideRequested |
-| `event_timestamp` | DateTime | 2026-08-19T16:00:00Z |
-| `model` | Text | SVT Stride 200 Demo |
-| `channel` | Text | Web |
+1. Open **Setup** (gear icon) — not the Data Cloud app tab alone.
+2. Search **Ingestion API**, or go to **Data Cloud Setup → Salesforce Integrations → Ingestion API**.
+   - Some orgs: **Setup → External Integrations → Ingestion API**
+3. Click **New** and name the connector, e.g. `SVT_Engagement_Events`.
+4. Click **Save**.
+5. On the connector detail page, click **Upload Schema**.
+6. Upload [`svt_engagement_events_schema.yaml`](svt-demo-data/svt_engagement_events_schema.yaml) from this repo.
+7. Wait for status **Needs Data Stream** (or **In Use** after stream is deployed).
 
-4. Note the **endpoint URL** and auth requirements from the connector setup.
+Now go to **Data Cloud → Data Streams → New** — **Ingestion API** should appear.
 
-### Step 2 — Map to Website Engagement DMO
+If it still does not appear:
+- Confirm you are a Data Cloud admin.
+- Refresh the page after schema upload.
+- Check **Setup → Ingestion API** shows the connector with uploaded schema and object `engagement_event`.
+
+### Step 2 — Create the data stream
+
+1. **Data Streams → New → Ingestion API → Next**
+2. Select connector `SVT_Engagement_Events` and object **`engagement_event`**
+3. Category: **Engagement**
+4. Primary key: **`event_id`**
+5. Event time field: **`event_timestamp`**
+6. Deploy to **default** data space
+
+### Step 3 — Map to Website Engagement DMO
 
 Use the **same mapping** as `lead_intent_events.csv`:
 
@@ -151,7 +163,7 @@ Use the **same mapping** as `lead_intent_events.csv`:
 
 Deploy the stream.
 
-### Step 3 — Post a test event
+### Step 4 — Post a test event
 
 Use the object endpoint from Ingestion API setup (Postman, curl, or a small script). Example payload shape:
 
@@ -168,7 +180,7 @@ Use the object endpoint from Ingestion API setup (Postman, curl, or a small scri
 
 Wait for streaming processing (~3 minutes for standard Streaming Ingestion API, or sub-second if real-time data graph + SKU are enabled).
 
-### Step 4 — Verify
+### Step 5 — Verify
 
 1. **Data Explorer → Website Engagement** — new row for Karan (`LEAD-2002`).
 2. Debug **SVT Get Lead Intent** with `prospectId = LEAD-2002` — should move from **MEDIUM** to **HIGH**.
