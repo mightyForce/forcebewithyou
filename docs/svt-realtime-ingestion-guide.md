@@ -161,30 +161,112 @@ Use the **same mapping** as `lead_intent_events.csv`:
 | `event_type` | SVT Event Type |
 | `model` | SVT Model |
 
-Deploy the stream.
+Deploy the stream. **Do not delete** the existing `lead_intent_events.csv` file stream — run both in parallel until the API path is verified.
 
-### Step 4 — Post a test event
+### Step 4 — Create External Client App (authentication)
 
-Use the object endpoint from Ingestion API setup (Postman, curl, or a small script). Example payload shape:
+1. **Setup → External Client Apps → External Client App Manager → New**
+2. Name: `SVT Data Cloud Ingest`
+3. **Settings tab → Enable OAuth**
+4. Callback URL: `https://login.salesforce.com/services/oauth2/callback` (placeholder for Client Credentials)
+5. **Selected OAuth Scopes** (move from Available):
+   - `Manage Data Cloud ingestion API data (cdp_ingest_api)` — required
+   - `Access all Data Cloud API resources (cdp_api)` — recommended
+   - `Access and manage your data (api)` — add if you get 401 on ingest
+6. **Policies tab** (separate from Settings):
+   - **Permitted Users:** All users can self-authorize (demo) or Admin approved
+   - ☑ **Enable Client Credentials Flow**
+   - **Run As (Username):** your admin user (e.g. Sanjay)
+   - **IP Relaxation:** Relax IP restrictions (demo)
+7. **Save**, then **Settings → Consumer Key and Secret** → copy both
 
-```json
-{
-  "event_id": "LEAD-EVT-9001",
-  "prospect_id": "LEAD-2002",
-  "event_type": "TestRideRequested",
-  "event_timestamp": "2026-08-19T16:00:00Z",
-  "model": "SVT Stride 200 Demo",
-  "channel": "Web"
-}
+### Step 5 — Post a test event (PowerShell on Windows)
+
+Authentication is **two steps**:
+
+```text
+Step 1: /services/oauth2/token          → Salesforce access_token (Client Credentials)
+Step 2: /services/a360/token              → Data Cloud access_token (token exchange)
+Step 3: tenant.c360a.salesforce.com/...   → POST event (use Data Cloud token)
 ```
 
-Wait for streaming processing (~3 minutes for standard Streaming Ingestion API, or sub-second if real-time data graph + SKU are enabled).
+**Do not use Windows CMD** for token exchange — `!` in Salesforce tokens breaks CMD. Use **PowerShell** with `Invoke-RestMethod`.
 
-### Step 5 — Verify
+**Ingest URL must be the full path**, not the tenant hostname alone:
 
-1. **Data Explorer → Website Engagement** — new row for Karan (`LEAD-2002`).
-2. Debug **SVT Get Lead Intent** with `prospectId = LEAD-2002` — should move from **MEDIUM** to **HIGH**.
-3. Ask the agent: *“What’s Karan Singh’s intent now?”*
+```text
+https://<tenant-id>.c360a.salesforce.com/api/v1/ingest/sources/SVT_Engagement_Events/engagement_event
+```
+
+Copy the exact URL from **Setup → Ingestion API → Share Developer Information**.
+
+Common URL mistakes:
+
+| Wrong | Result |
+|---|---|
+| `http://` instead of `https://` | Connection timeout |
+| Hostname only (trailing `/`) | 401 Unauthorized |
+| `.../engment_event` (typo) | 404 Not Found |
+| `.../engagement_event` | Correct |
+
+**Complete PowerShell script** (also in [`docs/scripts/ingest-svt-engagement-event.ps1`](scripts/ingest-svt-engagement-event.ps1)):
+
+```powershell
+$clientId     = "YOUR_CONSUMER_KEY"
+$clientSecret = "YOUR_CONSUMER_SECRET"
+$instanceUrl  = "https://orgfarm-6f6cec7b7b-dev-ed.develop.my.salesforce.com"
+$ingestUrl    = "https://YOUR-TENANT.c360a.salesforce.com/api/v1/ingest/sources/SVT_Engagement_Events/engagement_event"
+
+# Step 1
+$step1 = Invoke-RestMethod -Method Post -Uri "$instanceUrl/services/oauth2/token" -Body @{
+  grant_type="client_credentials"; client_id=$clientId; client_secret=$clientSecret
+} -ContentType "application/x-www-form-urlencoded"
+
+# Step 2
+$step2 = Invoke-RestMethod -Method Post -Uri "$instanceUrl/services/a360/token" -Body @{
+  grant_type="urn:salesforce:grant-type:external:cdp"
+  subject_token=$step1.access_token
+  subject_token_type="urn:ietf:params:oauth:token-type:access_token"
+} -ContentType "application/x-www-form-urlencoded"
+
+# Step 3
+$body = '{"data":[{"event_id":"LEAD-EVT-9003","prospect_id":"LEAD-2002","event_type":"TestRideRequested","event_timestamp":"2026-08-20T12:00:00.000Z","model":"SVT Stride 200 Demo","channel":"Web"}]}'
+
+$response = Invoke-WebRequest -Method Post -Uri $ingestUrl `
+  -Headers @{ Authorization = "Bearer $($step2.access_token)" } `
+  -Body $body -ContentType "application/json" -UseBasicParsing
+
+Write-Host "STATUS:" $response.StatusCode
+Write-Host "BODY:" $response.Content
+```
+
+**Payload rules:**
+
+- Wrap records in `"data": [ ... ]`
+- Use **schema field names** (`event_id`, not `event_id__c`)
+- Timestamp format: `yyyy-MM-ddTHH:mm:ss.000Z` (milliseconds + Z)
+- Use a **new** `event_id` for each test (e.g. `LEAD-EVT-9003`)
+
+Wait for streaming processing (~3–5 minutes for standard Streaming Ingestion API).
+
+### Step 6 — Verify
+
+1. **Data Explorer → Website Engagement** — new row for Karan (`LEAD-2002`) — check here first; faster than stream UI
+2. **Data Streams → SVT_Engagement_Events-engagement_event** — Total Records should increase (may lag)
+3. **Problem Records DLO** (`PR_SVT_Engagement_Events_...`) — should stay 0; if rows appear, check `detailed_error__c`
+4. Debug **SVT Get Lead Intent** with `prospectId = LEAD-2002` — should move from **MEDIUM** to **HIGH**
+5. Ask the agent: *“What’s Karan Singh’s intent now?”*
+
+### Troubleshooting
+
+| Error | Cause | Fix |
+|---|---|---|
+| `invalid subject token` on `/services/a360/token` | CMD corrupted token (`!`), or stale token | Use PowerShell `Invoke-RestMethod`; get fresh Step 1 token |
+| **401 Unauthorized** on ingest | Hostname-only URL, expired token, IP blocked | Use full `https://.../api/v1/ingest/.../engagement_event`; Relax IP; add `api` scope |
+| **404 Not Found** | Typo in path (`engment_event`) or wrong connector/object name | Use `engagement_event`; copy URL from Developer Information |
+| **Connection timeout** | `http://` on port 80 | Must be `https://` |
+| Stream still 0 records | Processing delay, or silent Step 3 failure | Wait 5 min; check Data Explorer DLO first; re-run with `Invoke-WebRequest` to see STATUS |
+| Blank row in Data Cloud | Wrong field names in payload | Use schema names from OpenAPI file, not DLO `__c` API names |
 
 ---
 
