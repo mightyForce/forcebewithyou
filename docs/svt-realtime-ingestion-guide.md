@@ -206,8 +206,10 @@ Common URL mistakes:
 |---|---|
 | `http://` instead of `https://` | Connection timeout |
 | Hostname only (trailing `/`) | 401 Unauthorized |
+| `.../engagement_events` (plural) | 401 or 404 |
 | `.../engment_event` (typo) | 404 Not Found |
 | `.../engagement_event` | Correct |
+| `$s2.access_token` without running Step 1+2 | 401 Unauthorized |
 
 **Complete PowerShell script** (also in [`docs/scripts/ingest-svt-engagement-event.ps1`](scripts/ingest-svt-engagement-event.ps1)):
 
@@ -257,12 +259,49 @@ Wait for streaming processing (~3–5 minutes for standard Streaming Ingestion A
 4. Debug **SVT Get Lead Intent** with `prospectId = LEAD-2002` — should move from **MEDIUM** to **HIGH**
 5. Ask the agent: *“What’s Karan Singh’s intent now?”*
 
+### Quick copy-paste fix (401 from partial setup)
+
+Run **all three steps in the same PowerShell session**, in order. Do not skip Step 1/2 or reuse a token from an old variable name like `$s2`:
+
+```powershell
+$clientId     = "YOUR_CONSUMER_KEY"
+$clientSecret = "YOUR_CONSUMER_SECRET"
+$instanceUrl  = "https://orgfarm-6f6cec7b7b-dev-ed.develop.my.salesforce.com"
+$ingestUrl    = "https://h0ydmzlgmm4dqmrrhbst9mz-mq.c360a.salesforce.com/api/v1/ingest/sources/SVT_Engagement_Events/engagement_event"
+
+$step1 = Invoke-RestMethod -Method Post -Uri "$instanceUrl/services/oauth2/token" -Body @{
+  grant_type="client_credentials"; client_id=$clientId; client_secret=$clientSecret
+} -ContentType "application/x-www-form-urlencoded"
+
+$step2 = Invoke-RestMethod -Method Post -Uri "$instanceUrl/services/a360/token" -Body @{
+  grant_type="urn:salesforce:grant-type:external:cdp"
+  subject_token=$step1.access_token
+  subject_token_type="urn:ietf:params:oauth:token-type:access_token"
+} -ContentType "application/x-www-form-urlencoded"
+
+$body = '{"data":[{"event_id":"LEAD-EVT-9004","prospect_id":"LEAD-2002","event_type":"TestRideRequested","event_timestamp":"2026-08-20T12:00:00.000Z","model":"SVT Stride 200 Demo","channel":"Web"}]}'
+
+$response = Invoke-WebRequest -Method Post -Uri $ingestUrl `
+  -Headers @{ Authorization = "Bearer $($step2.access_token)" } `
+  -Body $body -ContentType "application/json" -UseBasicParsing
+
+Write-Host "STATUS:" $response.StatusCode
+Write-Host "BODY:" $response.Content
+```
+
+Checklist before Step 3:
+
+- URL ends with **`engagement_event`** (singular), not `engagement_events`
+- Token variable is **`$step2.access_token`**, not `$s2`
+- Step 1 and Step 2 completed in **this same session** (tokens expire quickly)
+- `event_id` is **unique** for each test
+
 ### Troubleshooting
 
 | Error | Cause | Fix |
 |---|---|---|
 | `invalid subject token` on `/services/a360/token` | CMD corrupted token (`!`), or stale token | Use PowerShell `Invoke-RestMethod`; get fresh Step 1 token |
-| **401 Unauthorized** on ingest | Hostname-only URL, expired token, IP blocked | Use full `https://.../api/v1/ingest/.../engagement_event`; Relax IP; add `api` scope |
+| **401 Unauthorized** on ingest | Hostname-only URL, `$s2` without Step 2, plural `engagement_events`, expired token, IP blocked | Use full `https://.../engagement_event`; run Step 1+2; use `$step2.access_token`; Relax IP; add `api` scope |
 | **404 Not Found** | Typo in path (`engment_event`) or wrong connector/object name | Use `engagement_event`; copy URL from Developer Information |
 | **Connection timeout** | `http://` on port 80 | Must be `https://` |
 | Stream still 0 records | Processing delay, or silent Step 3 failure | Wait 5 min; check Data Explorer DLO first; re-run with `Invoke-WebRequest` to see STATUS |
