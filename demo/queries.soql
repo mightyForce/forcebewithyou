@@ -1,0 +1,49 @@
+// Health Cloud Demo — SOQL Queries
+// Run in Developer Console, VS Code, or via Salesforce CLI
+
+// ── All demo patients ──────────────────────────────────────────────
+SELECT Id, FirstName, LastName, Email, Birthdate, Phone, Account.Name
+FROM Contact
+WHERE Email LIKE '%summitvalley.health'
+ORDER BY LastName
+
+// ── Active care plans with patient details ─────────────────────────
+SELECT Id, Subject, Status, Priority, Description,
+       Contact.FirstName, Contact.LastName, Contact.Email,
+       Account.Name
+FROM Case
+WHERE Subject LIKE 'Care Plan%'
+ORDER BY Priority DESC, Contact.LastName
+
+// ── Maria Lopez — full care plan detail ────────────────────────────
+SELECT Id, Subject, Status, Priority, Description, CreatedDate
+FROM Case
+WHERE ContactId = '003gL000015IFObQAO'
+
+// ── All care tasks for Maria Lopez ─────────────────────────────────
+SELECT Id, Subject, Status, Priority, Description, ActivityDate
+FROM Task
+WHERE WhoId = '003gL000015IFObQAO'
+ORDER BY Priority DESC, Status
+
+// ── High-priority open tasks across all patients ───────────────────
+SELECT Id, Subject, Status, Priority,
+       Who.Name, Who.Email
+FROM Task
+WHERE Who.Email LIKE '%summitvalley.health'
+  AND Status != 'Completed'
+  AND Priority = 'High'
+ORDER BY Who.Name
+
+// ── Care plan workload summary ─────────────────────────────────────
+SELECT Contact.FirstName, Contact.LastName,
+       COUNT(Id) taskCount
+FROM Task
+WHERE Who.Email LIKE '%summitvalley.health'
+GROUP BY Contact.FirstName, Contact.LastName
+ORDER BY COUNT(Id) DESC
+
+// ── Demo organizations ───────────────────────────────────────────
+SELECT Id, Name, Type, Industry, Description
+FROM Account
+WHERE Name IN ('Summit Valley Medical Center', 'BlueCross Regional Health Plan')
