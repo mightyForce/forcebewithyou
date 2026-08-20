@@ -1,0 +1,85 @@
+{
+  "description": "Health Cloud demo seed data — Summit Valley Medical Center",
+  "org": "DotSolved Systems, Inc (Agentforce sandbox)",
+  "accounts": {
+    "summit_valley_medical_center": {
+      "id": "001gL00001jyf99QAA",
+      "name": "Summit Valley Medical Center",
+      "type": "Healthcare Provider",
+      "industry": "Healthcare"
+    },
+    "bluecross_regional": {
+      "id": "001gL00001jzdRpQAI",
+      "name": "BlueCross Regional Health Plan",
+      "type": "Payer",
+      "industry": "Insurance"
+    }
+  },
+  "patients": {
+    "maria_lopez": {
+      "id": "003gL000015IFObQAO",
+      "firstName": "Maria",
+      "lastName": "Lopez",
+      "email": "maria.lopez.demo@summitvalley.health",
+      "birthdate": "1965-03-14",
+      "condition": "Type 2 Diabetes",
+      "carePlan": "Diabetes Management"
+    },
+    "james_chen": {
+      "id": "003gL000015IFQDQA4",
+      "firstName": "James",
+      "lastName": "Chen",
+      "email": "james.chen.demo@summitvalley.health",
+      "birthdate": "1978-07-22",
+      "condition": "Post-cardiac surgery recovery",
+      "carePlan": "Cardiac Recovery"
+    },
+    "eleanor_whitmore": {
+      "id": "003gL000015IFRpQAO",
+      "firstName": "Eleanor",
+      "lastName": "Whitmore",
+      "email": "eleanor.whitmore.demo@summitvalley.health",
+      "birthdate": "1948-11-03",
+      "condition": "Hypertension, mobility limitations",
+      "carePlan": "Senior Wellness"
+    }
+  },
+  "carePlans": {
+    "diabetes_management": {
+      "id": "500gL00001TT3J3QAL",
+      "subject": "Care Plan — Diabetes Management (Maria Lopez)",
+      "patientId": "003gL000015IFObQAO",
+      "status": "Working",
+      "priority": "High"
+    },
+    "cardiac_recovery": {
+      "id": "500gL00001TT3MHQA1",
+      "subject": "Care Plan — Cardiac Recovery (James Chen)",
+      "patientId": "003gL000015IFQDQA4",
+      "status": "Working",
+      "priority": "High"
+    },
+    "senior_wellness": {
+      "id": "500gL00001TSxaFQAT",
+      "subject": "Care Plan — Senior Wellness (Eleanor Whitmore)",
+      "patientId": "003gL000015IFRpQAO",
+      "status": "Working",
+      "priority": "Medium"
+    }
+  },
+  "tasks": {
+    "maria_lopez": [
+      { "id": "00TgL00000DHENFUA5", "subject": "Schedule HbA1c lab test", "status": "Not Started", "priority": "High" },
+      { "id": "00TgL00000DH6olUAD", "subject": "Nutrition counseling referral", "status": "In Progress", "priority": "Normal" },
+      { "id": "00TgL00000DHEOrUAP", "subject": "Daily glucose monitoring", "status": "In Progress", "priority": "Normal" }
+    ],
+    "james_chen": [
+      { "id": "00TgL00000DHEQTUA5", "subject": "Physical therapy sessions", "status": "In Progress", "priority": "High" },
+      { "id": "00TgL00000DHES5UAP", "subject": "Post-op wound care check", "status": "Not Started", "priority": "High" }
+    ],
+    "eleanor_whitmore": [
+      { "id": "00TgL00000DHEThUAP", "subject": "Home health nurse visit", "status": "In Progress", "priority": "Normal" },
+      { "id": "00TgL00000DHEVJUA5", "subject": "Fall prevention assessment", "status": "Not Started", "priority": "Normal" }
+    ]
+  }
+}
