@@ -42,6 +42,51 @@
       "birthdate": "1948-11-03",
       "condition": "Hypertension, mobility limitations",
       "carePlan": "Senior Wellness"
+    },
+    "robert_kim": {
+      "id": "003gL000015IUqfQAG",
+      "firstName": "Robert",
+      "lastName": "Kim",
+      "email": "robert.kim.demo@summitvalley.health",
+      "birthdate": "1958-08-19",
+      "condition": "COPD",
+      "carePlan": "COPD Management"
+    },
+    "sarah_patel": {
+      "id": "003gL000015IUsHQAW",
+      "firstName": "Sarah",
+      "lastName": "Patel",
+      "email": "sarah.patel.demo@summitvalley.health",
+      "birthdate": "1992-04-02",
+      "condition": "Gestational diabetes risk",
+      "carePlan": "Prenatal Care"
+    },
+    "david_morrison": {
+      "id": "003gL000015IUttQAG",
+      "firstName": "David",
+      "lastName": "Morrison",
+      "email": "david.morrison.demo@summitvalley.health",
+      "birthdate": "1985-12-11",
+      "condition": "Anxiety and depression",
+      "carePlan": "Mental Health Support"
+    },
+    "linda_foster": {
+      "id": "003gL000015IUvVQAW",
+      "firstName": "Linda",
+      "lastName": "Foster",
+      "email": "linda.foster.demo@summitvalley.health",
+      "birthdate": "1970-06-30",
+      "condition": "Breast cancer remission",
+      "carePlan": "Oncology Survivorship"
+    },
+    "carlos_rivera": {
+      "id": "003gL000015IUx7QAG",
+      "firstName": "Carlos",
+      "lastName": "Rivera",
+      "email": "carlos.rivera.demo@summitvalley.health",
+      "birthdate": "2001-09-15",
+      "condition": "Moderate persistent asthma",
+      "carePlan": "Asthma Management"
     }
   },
   "carePlans": {

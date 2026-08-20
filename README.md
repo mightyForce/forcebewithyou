@@ -18,15 +18,23 @@ A Salesforce Health Cloud demo environment using standard objects to simulate pa
 | Maria Lopez | Diabetes Management | High |
 | James Chen | Cardiac Recovery | High |
 | Eleanor Whitmore | Senior Wellness | Medium |
+| Robert Kim | COPD Management | High |
+| Sarah Patel | Prenatal Care | High |
+| David Morrison | Mental Health Support | Medium |
+| Linda Foster | Oncology Survivorship | Medium |
+| Carlos Rivera | Asthma Management | High |
 
 ## Repository Structure
 
 ```
 demo/
   queries.soql       # SOQL queries for demo walkthrough
-  seed-data.json     # Record IDs and demo data reference
+  seed-data.json        # Record IDs and demo data reference
+  prospects-template.csv # CSV template for bulk import
+  prospects-batch.json   # JSON batch template for ingestion
 docs/
   HEALTH_CLOUD_DEMO.md  # Full demo script and Health Cloud mapping
+  INGEST_PROSPECTS.md   # How to add more patients/prospects
 ```
 
 ## Health Cloud vs. This Demo

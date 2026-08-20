@@ -1,0 +1,97 @@
+{
+  "description": "Batch template for ingesting Health Cloud demo prospects (patients)",
+  "providerAccountId": "001gL00001jyf99QAA",
+  "providerAccountName": "Summit Valley Medical Center",
+  "mapping": {
+    "patient": "Contact",
+    "carePlan": "Case",
+    "careActivity": "Task"
+  },
+  "prospects": [
+    {
+      "firstName": "Robert",
+      "lastName": "Kim",
+      "email": "robert.kim.demo@summitvalley.health",
+      "phone": "(415) 555-0104",
+      "birthdate": "1958-08-19",
+      "condition": "COPD",
+      "carePlan": {
+        "subject": "Care Plan — COPD Management (Robert Kim)",
+        "priority": "High",
+        "description": "Problem: COPD with frequent exacerbations. Goal: Reduce exacerbations 50% in 6 months."
+      },
+      "tasks": [
+        { "subject": "Pulmonary rehab enrollment", "priority": "High", "status": "In Progress" },
+        { "subject": "Inhaler adherence review", "priority": "Normal", "status": "Not Started" }
+      ]
+    },
+    {
+      "firstName": "Sarah",
+      "lastName": "Patel",
+      "email": "sarah.patel.demo@summitvalley.health",
+      "phone": "(415) 555-0105",
+      "birthdate": "1992-04-02",
+      "condition": "Gestational diabetes risk",
+      "carePlan": {
+        "subject": "Care Plan — Prenatal Care (Sarah Patel)",
+        "priority": "High",
+        "description": "Problem: First pregnancy, GDM risk. Goal: Healthy full-term delivery."
+      },
+      "tasks": [
+        { "subject": "OB visit scheduling", "priority": "High", "status": "Not Started" },
+        { "subject": "Glucose monitoring log", "priority": "Normal", "status": "In Progress" }
+      ]
+    },
+    {
+      "firstName": "David",
+      "lastName": "Morrison",
+      "email": "david.morrison.demo@summitvalley.health",
+      "phone": "(415) 555-0106",
+      "birthdate": "1985-12-11",
+      "condition": "Anxiety and depression",
+      "carePlan": {
+        "subject": "Care Plan — Mental Health Support (David Morrison)",
+        "priority": "Medium",
+        "description": "Problem: Anxiety/depression. Goal: Stable mood and 80% therapy attendance."
+      },
+      "tasks": [
+        { "subject": "Therapy session scheduling", "priority": "Normal", "status": "In Progress" },
+        { "subject": "Wellness check-in call", "priority": "Normal", "status": "Not Started" }
+      ]
+    },
+    {
+      "firstName": "Linda",
+      "lastName": "Foster",
+      "email": "linda.foster.demo@summitvalley.health",
+      "phone": "(415) 555-0107",
+      "birthdate": "1970-06-30",
+      "condition": "Breast cancer remission",
+      "carePlan": {
+        "subject": "Care Plan — Oncology Survivorship (Linda Foster)",
+        "priority": "Medium",
+        "description": "Problem: Remission surveillance. Goal: Complete annual surveillance."
+      },
+      "tasks": [
+        { "subject": "Surveillance imaging appointment", "priority": "Medium", "status": "Not Started" },
+        { "subject": "Survivorship counseling session", "priority": "Normal", "status": "In Progress" }
+      ]
+    },
+    {
+      "firstName": "Carlos",
+      "lastName": "Rivera",
+      "email": "carlos.rivera.demo@summitvalley.health",
+      "phone": "(415) 555-0108",
+      "birthdate": "2001-09-15",
+      "condition": "Moderate persistent asthma",
+      "carePlan": {
+        "subject": "Care Plan — Asthma Management (Carlos Rivera)",
+        "priority": "High",
+        "description": "Problem: Frequent ER visits. Goal: Zero ER visits in 60 days."
+      },
+      "tasks": [
+        { "subject": "Inhaler technique training", "priority": "High", "status": "In Progress" },
+        { "subject": "Pulmonology referral", "priority": "High", "status": "Not Started" }
+      ]
+    }
+  ]
+}
