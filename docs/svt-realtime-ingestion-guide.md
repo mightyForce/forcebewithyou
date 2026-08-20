@@ -172,7 +172,7 @@ Deploy the stream. **Do not delete** the existing `lead_intent_events.csv` file 
 5. **Selected OAuth Scopes** (move from Available):
    - `Manage Data Cloud ingestion API data (cdp_ingest_api)` — required
    - `Access all Data Cloud API resources (cdp_api)` — recommended
-   - `Access and manage your data (api)` — add if you get 401 on ingest
+   - `Access and manage your data (api)` — **required in some orgs** (Step 3 401 even when Step 1+2 succeed and URL is correct)
 6. **Policies tab** (separate from Settings):
    - **Permitted Users:** All users can self-authorize (demo) or Admin approved
    - ☑ **Enable Client Credentials Flow**
@@ -301,7 +301,7 @@ Checklist before Step 3:
 | Error | Cause | Fix |
 |---|---|---|
 | `invalid subject token` on `/services/a360/token` | CMD corrupted token (`!`), or stale token | Use PowerShell `Invoke-RestMethod`; get fresh Step 1 token |
-| **401 Unauthorized** on ingest | Hostname-only URL, `$s2` without Step 2, plural `engagement_events`, expired token, IP blocked | Use full `https://.../engagement_event`; run Step 1+2; use `$step2.access_token`; Relax IP; add `api` scope |
+| **401 Unauthorized** on ingest | Hostname-only URL, `$s2` without Step 2, plural `engagement_events`, expired token, IP blocked, missing `api` scope | Use full `https://.../engagement_event`; run Step 1+2; use `$step2.access_token`; Relax IP; add **`api`** scope if Steps 1+2 OK but Step 3 still 401 |
 | **404 Not Found** | Typo in path (`engment_event`) or wrong connector/object name | Use `engagement_event`; copy URL from Developer Information |
 | **Connection timeout** | `http://` on port 80 | Must be `https://` |
 | Stream still 0 records | Processing delay, or silent Step 3 failure | Wait 5 min; check Data Explorer DLO first; re-run with `Invoke-WebRequest` to see STATUS |
