@@ -376,13 +376,13 @@ Use the **new Agent Builder** (subagents replace the older topic model).
 | SVT Get Lead Context | Autolaunched Flow | `searchText` | `leadId`, `leadName`, `prospectId`, `city`, `pinCode`, `model`, `contactPermission` |
 | SVT Get Lead Intent | Autolaunched Flow | `prospectId` | `intentScore`, `preferredModel` (optional) |
 | SVT Recommend Dealer | Autolaunched Flow | `city`, `pinCode` (Text → `VALUE()` in Flow), `model` | `recommendedDealerName`, `matchType`, `primaryLanguage` |
-| SVT Create Lead Test Ride Task | Autolaunched Flow | `leadId`, `dealerName`, `model`, `userConfirmed` | `taskStatus`, `message` |
+| SVT Create Lead Test Ride Task | Autolaunched Flow | `leadId`, `dealerName`, `model`, `userConfirmed`, `contactPermission` | `taskStatus`, `message`, `emailSent` |
 
 **Flow implementation notes:**
 
 - **Get Lead Context:** CRM Get Lead (store Id, Email, Name) → Contact Point Email by email → Individual by Party → assign profile fields from Individual custom fields.
 - **Recommend Dealer:** Accept `pinCode` as **Text**; convert with formula `pinCodeNumber = VALUE({!pinCode})` before filtering the Number field `pin_code` on SVT Dealer Directory. Use separate PIN and city lookup branches.
-- **Create Lead Test Ride Task:** Decision on `userConfirmed`; consent check on `contactPermission`; assign Task to `$User.Id`; store Task Id on Create Records element.
+- **Create Lead Test Ride Task:** Decision on `userConfirmed`; consent check on `contactPermission`; duplicate open-task check; assign Task to `$User.Id`; **Send Email** confirmation when `contactPermission` is true and Lead has email (see [test ride confirmation email](svt-test-ride-confirmation-email.md)).
 
 Create each action under **Setup → Agent Assets → Actions**, then add to the subagent via **Actions Available for Reasoning → Add from Asset Library**.
 
@@ -396,7 +396,7 @@ If structured Data Cloud retrieval is limited in the selected Developer Edition,
 - Do not diagnose mechanical faults or provide emergency advice.
 - Do not approve discounts, warranty, financing, refunds, or payments.
 - Ground every recommendation in retrieved fields and approved product content.
-- Do not send customer communications autonomously in the initial demo.
+- Customer email is sent only from **Create Lead Test Ride Task** when `contactPermission` is true and the Lead has an email — not autonomously from the language model.
 - If required data is missing or conflicting, say so and hand off.
 - Log agent action inputs and outcomes without placing unnecessary personal data in free text.
 
