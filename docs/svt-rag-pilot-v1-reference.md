@@ -13,6 +13,7 @@
 **Related docs**
 
 - [Main demo guide](svt-data-cloud-agentforce-demo.md)
+- [**Org setup guide — Data Library**](svt-data-library-org-setup.md) ← **start here to build in org**
 - [Real-time ingestion](svt-realtime-ingestion-guide.md)
 - [Test ride confirmation email](svt-test-ride-confirmation-email.md)
 
