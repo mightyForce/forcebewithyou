@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Generate SVT RAG pilot PDFs (Path A + Path B)."""
+"""Generate SVT advisor PDFs for Agentforce Data Library (Path A only)."""
 from pathlib import Path
 from fpdf import FPDF
 
 ROOT = Path(__file__).resolve().parents[1]
 LIB_DIR = ROOT / "svt-rag-data-library"
-CLOUD_DIR = ROOT / "svt-rag-data-cloud"
 FOOTER = "SVT Motors Demo - Synthetic Data Only - Not for Production Use"
 
 
@@ -57,7 +56,7 @@ DOCS = {
             ("Top Features", "- 3.2 kWh battery\n- Smart TFT display\n- Regenerative braking\n- App-based diagnostics\n- Fast charge: 0-80% in 45 min (demo conditions)"),
             ("Ideal Buyer", "Daily commuters in Bengaluru, Pune, Delhi metro areas. First-time EV upgraders."),
             ("Good For Demo Leads", "Isha Sharma, Naveen Kumar, Karan Singh, Lakshmi Iyer, Rohit Verma (LOW intent still eligible for nurture)."),
-            ("Do Not Claim", "Do not quote exact on-road price. For full technical numbers refer to SVT Stride 200 Technical Specification (Data Cloud reference library)."),
+            ("Do Not Claim", "Do not quote exact on-road price. Use only the specs listed in this one-pager; if not listed, say it is not in the approved SVT documents."),
         ],
     ),
     LIB_DIR / "SVT_Urban_125_Advisor_OnePager.pdf": (
@@ -78,58 +77,6 @@ DOCS = {
             ("I Will Think About It", "Ask what information would help decide. Offer dealer follow-up within 48 hours. Create CRM task only with consent."),
             ("Competitor Mention", "Focus on SVT test ride experience and service network. Do not disparage competitors."),
             ("Authority Reminder", "Advisors may explain value. Only authorized finance team may approve financing or discounts."),
-        ],
-    ),
-    CLOUD_DIR / "SVT_Stride_200_Technical_Specification.pdf": (
-        "SVT Stride 200 Demo - Technical Specification",
-        [
-            ("Motor", "Peak power: 4.2 kW | Nominal: 3.1 kW | Type: Brushless DC"),
-            ("Battery", "Capacity: 3.2 kWh | Chemistry: LFP | Warranty: 5 years (see Warranty Policy 2026)"),
-            ("Range", "Certified demo range: 142 km (ideal conditions, 25°C, eco mode, 65 kg rider). Real-world range varies."),
-            ("Charging", "AC charge 0-80%: 45 minutes (demo spec) | Standard connector: Type 2"),
-            ("Dimensions", "Length: 1,890 mm | Width: 700 mm | Seat height: 780 mm | Weight: 118 kg"),
-            ("Variants", "Stride 200 Demo (showroom) | Stride 200 Pro (production naming - demo uses Demo suffix)"),
-        ],
-    ),
-    CLOUD_DIR / "SVT_Urban_125_Technical_Specification.pdf": (
-        "SVT Urban 125 Demo - Technical Specification",
-        [
-            ("Motor", "Peak power: 2.8 kW | Nominal: 2.0 kW"),
-            ("Battery", "Capacity: 1.8 kWh | Chemistry: LFP"),
-            ("Range", "Certified demo range: 95 km (ideal conditions, eco mode)"),
-            ("Charging", "AC charge 0-80%: 55 minutes"),
-            ("Dimensions", "Length: 1,720 mm | Weight: 98 kg"),
-            ("Use Case", "Urban short trips under 30 km daily"),
-        ],
-    ),
-    CLOUD_DIR / "SVT_Warranty_and_Service_Policy_2026.pdf": (
-        "SVT Warranty & Service Policy 2026",
-        [
-            ("Vehicle Warranty", "3 years from registration date for manufacturing defects."),
-            ("Battery Warranty", "5 years or 50,000 km (whichever first) for Stride 200 and Urban 125 battery packs."),
-            ("Exclusions", "Accident damage, unauthorised modifications, commercial misuse, failure to follow service schedule."),
-            ("Service Intervals", "First service: 1,000 km or 3 months. Subsequent: every 5,000 km or 6 months."),
-            ("Advisor Script", "For rider retention demos, cite warranty end date from CRM/Data Cloud profile. Do not extend warranty verbally."),
-        ],
-    ),
-    CLOUD_DIR / "SVT_Service_Bulletin_SB-2026-04.pdf": (
-        "Service Bulletin SB-2026-04 - Display Software Update",
-        [
-            ("Subject", "Intermittent display flicker on Stride 200 Demo TFT cluster."),
-            ("Affected Models", "SVT Stride 200 Demo - production batch SV-DEMO-2025-Q4."),
-            ("Symptom", "Brief flicker on startup in hot weather (>38°C)."),
-            ("Advisor Action", "Inform customer. Schedule software update at authorised dealer. No safety recall - convenience fix."),
-            ("Demo Reference Rider", "Check Ananya Rao service history for related workshop notes in Module 1 demo."),
-        ],
-    ),
-    CLOUD_DIR / "SVT_Dealer_Directory_Operations_Guide.pdf": (
-        "SVT Dealer Directory & Routing Guide",
-        [
-            ("Routing Logic", "PIN match first: match prospect pin_code to dealer pin_code for same model. If no PIN match, fallback to city match."),
-            ("Fields", "dealer_name, city, pin_code (Number), model, primary_language, test_ride_available (must be true for recommendation)."),
-            ("Demo Dealers", "SVT Bengaluru Central (560001), SVT Pune West (411001), SVT Chennai North (600001), SVT Delhi South (110001)."),
-            ("Flow Alignment", "SVT Recommend Dealer Flow implements this logic. pinCode converted with VALUE after comma strip."),
-            ("Languages", "English (Bengaluru, Pune, Delhi South), Tamil (Chennai North). Offer language context to advisor."),
         ],
     ),
 }
