@@ -446,6 +446,8 @@ If structured Data Cloud retrieval is limited in the selected Developer Edition,
 
 ### Phase 5: demo polish
 
+See **[Agentforce Phase 5 build guide](svt-agentforce-phase5-build.md)** for the full build plan (Data Library completion, unified briefing Flow, live ingest demo, product catalog, Advisor Console).
+
 1. Create a simple Lightning page with:
    - rider profile summary,
    - vehicle and service timeline,
