@@ -1,0 +1,4 @@
+FirstName,LastName,Email,Phone,MailingCity,MailingCountry,Description
+Arjun,Kapoor,arjun.kapoor@example.test,+91-9000001004,Delhi,India,"FICTIONAL DEMO RIDER. Synthetic data only. Preferred language: Hindi. Contact permission: granted."
+Nisha,Patel,nisha.patel@example.test,+91-9000001005,Ahmedabad,India,"FICTIONAL DEMO RIDER. Synthetic data only. Preferred language: Gujarati. Contact permission: granted."
+Rahul,Nair,rahul.nair@example.test,+91-9000001006,Kochi,India,"FICTIONAL DEMO RIDER. Synthetic data only. Preferred language: Malayalam. Contact permission: granted."

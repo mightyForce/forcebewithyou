@@ -64,6 +64,7 @@
 | `lead_intent_events.csv` | 24 | Website engagement / intent |
 | `vehicle_service_history.csv` | 6 | Rider service context |
 | `riders.csv` | 6 | CRM rider profiles |
+| `svt_rider_contacts_crm_import_missing.csv` | 3 | CRM Contact import — Arjun, Nisha, Rahul (2C prerequisite) |
 | `digital_engagement.csv` | 8 | Rider marketing engagement |
 | `crm_leads_import_new.csv` | 12 | CRM Lead import |
 
