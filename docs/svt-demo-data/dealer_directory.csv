@@ -1,0 +1,85 @@
+dealer_id,dealer_name,city,pin_code,model,primary_language,test_ride_available
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Stride 200 Demo,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Stride 200 Pro,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Urban 125 Demo,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Urban 125 Plus,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Pulse 160 Standard,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Pulse 160 Long Range,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Nova 110 Lite,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Nova 110 Connect,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Apex 300 Sport,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Apex 300 Tour,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Glide 90 Eco,English,true
+DLR-4001,SVT Bengaluru Central,Bengaluru,560001,SVT Glide 90 Family,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Stride 200 Demo,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Stride 200 Pro,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Urban 125 Demo,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Urban 125 Plus,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Pulse 160 Standard,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Pulse 160 Long Range,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Nova 110 Lite,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Nova 110 Connect,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Apex 300 Sport,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Apex 300 Tour,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Glide 90 Eco,English,true
+DLR-4002,SVT Pune West,Pune,411001,SVT Glide 90 Family,English,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Stride 200 Demo,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Stride 200 Pro,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Urban 125 Demo,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Urban 125 Plus,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Pulse 160 Standard,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Pulse 160 Long Range,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Nova 110 Lite,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Nova 110 Connect,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Apex 300 Sport,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Apex 300 Tour,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Glide 90 Eco,Tamil,true
+DLR-4003,SVT Chennai North,Chennai,600001,SVT Glide 90 Family,Tamil,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Stride 200 Demo,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Stride 200 Pro,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Urban 125 Demo,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Urban 125 Plus,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Pulse 160 Standard,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Pulse 160 Long Range,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Nova 110 Lite,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Nova 110 Connect,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Apex 300 Sport,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Apex 300 Tour,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Glide 90 Eco,Hindi,true
+DLR-4004,SVT Delhi South,Delhi,110001,SVT Glide 90 Family,Hindi,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Stride 200 Demo,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Stride 200 Pro,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Urban 125 Demo,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Urban 125 Plus,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Pulse 160 Standard,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Pulse 160 Long Range,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Nova 110 Lite,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Nova 110 Connect,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Apex 300 Sport,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Apex 300 Tour,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Glide 90 Eco,Gujarati,true
+DLR-4005,SVT Ahmedabad One,Ahmedabad,380001,SVT Glide 90 Family,Gujarati,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Stride 200 Demo,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Stride 200 Pro,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Urban 125 Demo,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Urban 125 Plus,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Pulse 160 Standard,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Pulse 160 Long Range,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Nova 110 Lite,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Nova 110 Connect,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Apex 300 Sport,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Apex 300 Tour,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Glide 90 Eco,Malayalam,true
+DLR-4006,SVT Kochi Central,Kochi,682001,SVT Glide 90 Family,Malayalam,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Stride 200 Demo,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Stride 200 Pro,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Urban 125 Demo,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Urban 125 Plus,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Pulse 160 Standard,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Pulse 160 Long Range,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Nova 110 Lite,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Nova 110 Connect,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Apex 300 Sport,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Apex 300 Tour,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Glide 90 Eco,Telugu,true
+DLR-4007,SVT Hyderabad Central,Hyderabad,500001,SVT Glide 90 Family,Telugu,true
