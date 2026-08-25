@@ -1,0 +1,13 @@
+prospect_id,first_name,last_name,email,phone,city,pin_code,preferred_model,contact_permission,source_system
+LEAD-2001,Isha,Sharma,isha.sharma@example.test,+919000002001,Bengaluru,560001,SVT Stride 200 Demo,true,LeadCapture
+LEAD-2002,Karan,Singh,karan.singh@example.test,+919000002002,Pune,411001,SVT Stride 200 Pro,true,LeadCapture
+LEAD-2003,Aditi,Menon,aditi.menon@example.test,+919000002003,Chennai,600001,SVT Urban 125 Demo,false,LeadCapture
+LEAD-2004,Rohit,Verma,rohit.verma@example.test,+919000002004,Delhi,110001,SVT Urban 125 Plus,true,LeadCapture
+LEAD-2005,Naveen,Kumar,naveen.kumar@example.test,+919000002005,Bengaluru,560001,SVT Pulse 160 Standard,true,LeadCapture
+LEAD-2006,Vikram,Patel,vikram.patel@example.test,+919000002006,Pune,411001,SVT Pulse 160 Long Range,true,LeadCapture
+LEAD-2007,Sneha,Reddy,sneha.reddy@example.test,+919000002007,Chennai,600001,SVT Nova 110 Lite,false,LeadCapture
+LEAD-2008,Arjun,Mehta,arjun.mehta@example.test,+919000002008,Delhi,110001,SVT Nova 110 Connect,true,LeadCapture
+LEAD-2009,Lakshmi,Iyer,lakshmi.iyer@example.test,+919000002009,Bengaluru,560001,SVT Apex 300 Sport,true,LeadCapture
+LEAD-2010,Ravi,Krishnan,ravi.krishnan@example.test,+919000002010,Hyderabad,500001,SVT Apex 300 Tour,true,LeadCapture
+LEAD-2011,Pooja,Desai,pooja.desai@example.test,+919000002011,Ahmedabad,380001,SVT Glide 90 Eco,true,LeadCapture
+LEAD-2012,Manish,Joshi,manish.joshi@example.test,+919000002012,Kochi,682001,SVT Glide 90 Family,true,LeadCapture

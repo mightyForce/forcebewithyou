@@ -1,0 +1,7 @@
+customer_id,first_name,last_name,email,phone,city,country,preferred_language,contact_permission,source_system
+SVT-1001,Ananya,Rao,ananya.rao@example.test,+919000001001,Bengaluru,India,English,true,CRM
+SVT-1002,Vikram,Mehta,vikram.mehta@example.test,+919000001002,Pune,India,English,true,CRM
+SVT-1003,Meera,Iyer,meera.iyer@example.test,+919000001003,Chennai,India,Tamil,false,CRM
+SVT-1004,Arjun,Kapoor,arjun.kapoor@example.test,+919000001004,Delhi,India,Hindi,true,MobileApp
+SVT-1005,Nisha,Patel,nisha.patel@example.test,+919000001005,Ahmedabad,India,Gujarati,true,Web
+SVT-1006,Rahul,Nair,rahul.nair@example.test,+919000001006,Kochi,India,Malayalam,true,DealerPortal

@@ -1,0 +1,25 @@
+event_id,prospect_id,email,phone,event_type,event_timestamp,channel,model,source_system
+LEAD-EVT-3001,LEAD-2001,isha.sharma@example.test,+919000002001,ModelPageViewed,2026-08-18T09:00:00Z,Web,SVT Stride 200 Demo,WebSDK
+LEAD-EVT-3002,LEAD-2001,isha.sharma@example.test,+919000002001,ConfiguratorStarted,2026-08-18T09:06:00Z,Web,SVT Stride 200 Demo,WebSDK
+LEAD-EVT-3003,LEAD-2001,isha.sharma@example.test,+919000002001,DealerLocatorViewed,2026-08-18T09:09:00Z,Web,SVT Stride 200 Demo,WebSDK
+LEAD-EVT-3004,LEAD-2001,isha.sharma@example.test,+919000002001,TestRideRequested,2026-08-18T09:12:00Z,Web,SVT Stride 200 Demo,WebSDK
+LEAD-EVT-3005,LEAD-2002,karan.singh@example.test,+919000002002,ModelPageViewed,2026-08-18T11:00:00Z,MobileApp,SVT Stride 200 Pro,MobileSDK
+LEAD-EVT-3006,LEAD-2002,karan.singh@example.test,+919000002002,ConfiguratorStarted,2026-08-18T11:08:00Z,MobileApp,SVT Stride 200 Pro,MobileSDK
+LEAD-EVT-3007,LEAD-2003,aditi.menon@example.test,+919000002003,DealerLocatorViewed,2026-08-18T13:00:00Z,Web,SVT Urban 125 Demo,WebSDK
+LEAD-EVT-3008,LEAD-2003,aditi.menon@example.test,+919000002003,ModelPageViewed,2026-08-18T13:05:00Z,Web,SVT Urban 125 Demo,WebSDK
+LEAD-EVT-3009,LEAD-2004,rohit.verma@example.test,+919000002004,EmailOpened,2026-08-18T15:00:00Z,Email,SVT Urban 125 Plus,Marketing
+LEAD-EVT-3010,LEAD-2005,naveen.kumar@example.test,+919000002005,TestRideRequested,2026-08-20T10:00:00Z,Web,SVT Pulse 160 Standard,WebSDK
+LEAD-EVT-3011,LEAD-2006,vikram.patel@example.test,+919000002006,ModelPageViewed,2026-08-20T10:00:00Z,Web,SVT Pulse 160 Long Range,WebSDK
+LEAD-EVT-3012,LEAD-2006,vikram.patel@example.test,+919000002006,ConfiguratorStarted,2026-08-20T10:05:00Z,Web,SVT Pulse 160 Long Range,WebSDK
+LEAD-EVT-3013,LEAD-2007,sneha.reddy@example.test,+919000002007,DealerLocatorViewed,2026-08-20T10:00:00Z,Web,SVT Nova 110 Lite,WebSDK
+LEAD-EVT-3014,LEAD-2007,sneha.reddy@example.test,+919000002007,ModelPageViewed,2026-08-20T10:08:00Z,Web,SVT Nova 110 Lite,WebSDK
+LEAD-EVT-3015,LEAD-2008,arjun.mehta@example.test,+919000002008,EmailOpened,2026-08-20T10:00:00Z,Email,SVT Nova 110 Connect,Marketing
+LEAD-EVT-3016,LEAD-2009,lakshmi.iyer@example.test,+919000002009,ConfiguratorStarted,2026-08-20T10:00:00Z,Web,SVT Apex 300 Sport,WebSDK
+LEAD-EVT-3017,LEAD-2009,lakshmi.iyer@example.test,+919000002009,DealerLocatorViewed,2026-08-20T10:05:00Z,Web,SVT Apex 300 Sport,WebSDK
+LEAD-EVT-3018,LEAD-2010,ravi.krishnan@example.test,+919000002010,ModelPageViewed,2026-08-21T09:00:00Z,Web,SVT Apex 300 Tour,WebSDK
+LEAD-EVT-3019,LEAD-2010,ravi.krishnan@example.test,+919000002010,ConfiguratorStarted,2026-08-21T09:06:00Z,Web,SVT Apex 300 Tour,WebSDK
+LEAD-EVT-3020,LEAD-2010,ravi.krishnan@example.test,+919000002010,DealerLocatorViewed,2026-08-21T09:09:00Z,Web,SVT Apex 300 Tour,WebSDK
+LEAD-EVT-3021,LEAD-2010,ravi.krishnan@example.test,+919000002010,TestRideRequested,2026-08-21T09:12:00Z,Web,SVT Apex 300 Tour,WebSDK
+LEAD-EVT-3022,LEAD-2011,pooja.desai@example.test,+919000002011,ModelPageViewed,2026-08-21T11:00:00Z,MobileApp,SVT Glide 90 Eco,MobileSDK
+LEAD-EVT-3023,LEAD-2011,pooja.desai@example.test,+919000002011,ConfiguratorStarted,2026-08-21T11:08:00Z,MobileApp,SVT Glide 90 Eco,MobileSDK
+LEAD-EVT-3024,LEAD-2012,manish.joshi@example.test,+919000002012,EmailOpened,2026-08-21T13:00:00Z,Email,SVT Glide 90 Family,Marketing

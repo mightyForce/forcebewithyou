@@ -1,0 +1,8 @@
+Name,Dealer_ID__c,BillingCity,BillingPostalCode,Type,Description
+SVT Bengaluru Central,DLR-4001,Bengaluru,560001,Dealer,SVT demo dealer - Bengaluru PIN 560001
+SVT Pune West,DLR-4002,Pune,411001,Dealer,SVT demo dealer - Pune PIN 411001
+SVT Chennai North,DLR-4003,Chennai,600001,Dealer,SVT demo dealer - Chennai PIN 600001
+SVT Delhi South,DLR-4004,Delhi,110001,Dealer,SVT demo dealer - Delhi PIN 110001
+SVT Ahmedabad One,DLR-4005,Ahmedabad,380001,Dealer,SVT demo dealer - Ahmedabad PIN 380001
+SVT Kochi Central,DLR-4006,Kochi,682001,Dealer,SVT demo dealer - Kochi PIN 682001
+SVT Hyderabad Central,DLR-4007,Hyderabad,500001,Dealer,SVT demo dealer - Hyderabad PIN 500001

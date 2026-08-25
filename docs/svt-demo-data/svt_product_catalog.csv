@@ -1,0 +1,13 @@
+model_sku,base_model,variant,segment,powertrain,battery_kwh,motor_peak_kw,range_km,charge_min_0_80,warranty_battery_years,warranty_vehicle_years,ideal_use_case,doc_version
+SVT Stride 200 Demo,Stride 200,Demo,Premium urban EV,Electric,3.2,4.2,142,45,5,3,Daily commute and weekend rides,2026.1
+SVT Stride 200 Pro,Stride 200,Pro,Premium urban EV,Electric,4.0,5.0,165,50,5,3,Longer commute and power users,2026.1
+SVT Urban 125 Demo,Urban 125,Demo,City commuter EV,Electric,1.8,2.8,95,55,5,3,Dense city short trips,2026.1
+SVT Urban 125 Plus,Urban 125,Plus,City commuter EV,Electric,2.2,3.2,110,50,5,3,City commute with extra range,2026.1
+SVT Pulse 160 Standard,Pulse 160,Standard,Mid-range EV,Electric,2.5,3.5,115,48,5,3,Mixed city and suburban use,2026.1
+SVT Pulse 160 Long Range,Pulse 160,Long Range,Mid-range EV,Electric,3.0,3.5,140,55,5,3,Suburban riders needing range,2026.1
+SVT Nova 110 Lite,Nova 110,Lite,Entry smart EV,Electric,1.4,2.2,80,60,5,3,First-time EV buyers,2026.1
+SVT Nova 110 Connect,Nova 110,Connect,Entry smart EV,Electric,1.6,2.5,88,55,5,3,Connected urban mobility,2026.1
+SVT Apex 300 Sport,Apex 300,Sport,Performance EV,Electric,4.5,6.2,130,40,5,3,Enthusiast and performance riders,2026.1
+SVT Apex 300 Tour,Apex 300,Tour,Performance EV,Electric,5.2,5.8,170,65,5,3,Touring and highway stretches,2026.1
+SVT Glide 90 Eco,Glide 90,Eco,Budget city EV,Electric,1.2,1.8,70,65,5,3,Budget-conscious city riders,2026.1
+SVT Glide 90 Family,Glide 90,Family,Budget city EV,Electric,1.5,2.0,78,60,5,3,Family errands and school runs,2026.1
