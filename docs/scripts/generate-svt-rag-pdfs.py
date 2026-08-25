@@ -53,7 +53,8 @@ DOCS = {
         "SVT Stride 200 Demo - Advisor One-Pager",
         [
             ("Positioning", "Premium urban electric scooter for professionals who want range confidence and smart connectivity."),
-            ("Top Features", "- 3.2 kWh battery\n- Smart TFT display\n- Regenerative braking\n- App-based diagnostics\n- Fast charge: 0-80% in 45 min (demo conditions)"),
+            ("Key Specs (demo)", "Battery: 3.2 kWh (LFP)\nMotor peak power: 4.2 kW\nCertified demo range: 142 km (ideal conditions)\nAC charge 0-80%: 45 minutes"),
+            ("Top Features", "- Smart TFT display\n- Regenerative braking\n- App-based diagnostics\n- Fast charge support (demo conditions)"),
             ("Ideal Buyer", "Daily commuters in Bengaluru, Pune, Delhi metro areas. First-time EV upgraders."),
             ("Good For Demo Leads", "Isha Sharma, Naveen Kumar, Karan Singh, Lakshmi Iyer, Rohit Verma (LOW intent still eligible for nurture)."),
             ("Do Not Claim", "Do not quote exact on-road price. Use only the specs listed in this one-pager; if not listed, say it is not in the approved SVT documents."),
@@ -73,7 +74,7 @@ DOCS = {
         "SVT Objection Handling Guide",
         [
             ("Too Expensive", "Acknowledge budget concern. Reframe total cost of ownership: lower running cost vs petrol. Offer test ride before price discussion. Do NOT approve discounts - escalate to sales manager."),
-            ("Range Anxiety", "Explain demo range figures are under ideal conditions. Point to technical specification for battery kWh and certified range. Suggest test ride to experience regen braking."),
+            ("Range Anxiety", "Explain demo range figures are under ideal conditions. Point to the Stride 200 or Urban 125 advisor one-pager for battery kWh and certified range. Suggest test ride to experience regen braking."),
             ("I Will Think About It", "Ask what information would help decide. Offer dealer follow-up within 48 hours. Create CRM task only with consent."),
             ("Competitor Mention", "Focus on SVT test ride experience and service network. Do not disparage competitors."),
             ("Authority Reminder", "Advisors may explain value. Only authorized finance team may approve financing or discounts."),
