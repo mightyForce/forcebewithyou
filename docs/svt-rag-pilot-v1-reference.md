@@ -159,7 +159,7 @@ If a question needs a number not in the one-pagers, the agent says it is not in 
 | A-1 | Ensure 4 PDFs in `docs/svt-rag-data-library/` (run generator if needed) |
 | A-2 | **Setup → Agentforce Data Library → New** — `SVT Advisor Quick Guides` |
 | A-3 | Upload A1–A4 |
-| A-4 | **Agent Builder → SVT Advisor Copilot** → attach library to **Lead Engagement & Test Ride** (and Rider subagent if desired) |
+| A-4 | **Agent Builder → SVT Advisor Copilot → Data → Data Library** — select `SVT Advisor Quick Guides`; add **Answer Question with Knowledge** to Lead Engagement subagent |
 | A-5 | Add subagent instructions (§5) |
 | A-6 | Test prompts (§7) |
 

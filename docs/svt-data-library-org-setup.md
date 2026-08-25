@@ -13,7 +13,8 @@ Step-by-step guide to wire **SVT Advisor Quick Guides** into **SVT Advisor Copil
 ```text
 4 advisor PDFs
   → Agentforce Data Library (SVT Advisor Quick Guides)
-  → attached to Lead Engagement subagent
+  → Agent-level Data Library (Data → Data Library)
+  → Lead Engagement subagent uses Answer Question with Knowledge + Flow routing via instructions
   → agent cites documents for specs / playbook / objections
   → Flows still handle intent, dealer, consent, tasks
 ```
@@ -67,25 +68,28 @@ python3 docs/scripts/generate-svt-rag-pdfs.py
 
 ---
 
-## Step 3 — Attach library to the agent
+## Step 3 — Attach library to the agent (agent-level, not per subagent)
 
-1. Open **Setup → Agentforce Agents** (or **Agent Builder** from App Launcher).
-2. Open **`SVT Advisor Copilot`**.
-3. In the agent outline, select subagent **`Lead Engagement & Test Ride`** (exact name may vary — use your lead/test-ride subagent).
-4. Find **Knowledge**, **Data Library**, or **Grounding** section (UI label varies by release):
-   - **Agent Builder → Subagent → Knowledge Sources → Add**
-   - or **Data Libraries → Add → SVT Advisor Quick Guides**
-5. Select **`SVT Advisor Quick Guides`**.
-6. **Save** the subagent.
-7. **Save** the agent (draft).
+In **Agent Builder** (Agent Authoring), the Data Library is configured at the **agent** level under **Data → Data Library** — it is **not** nested inside a subagent. Your screenshot setup is correct.
 
-### Optional — Rider Retention subagent
+1. Open **Agent Builder → SVT Advisor Copilot**.
+2. In the left outline, under **Data**, click **Data Library** (sibling to **Subagents**, not inside one).
+3. Select **`SVT Advisor Quick Guides`** from the dropdown.
+4. Optional: check **Show sources** if you want citations visible in the UI during Live Test.
+5. Click **Save** (top right).
 
-If you want document answers in Module 1 as well:
+Salesforce wires this through the built-in **Answer Question with Knowledge** action, which searches the library and grounds responses.
 
-1. Open the **Rider retention** subagent.
-2. Attach the same library **`SVT Advisor Quick Guides`**.
-3. Rider demos mainly use Flows; library is optional for Stride 200 talking points.
+> **Note:** All subagents on this agent can *access* the library, but **instructions** control *when* each subagent should use Flows vs knowledge. Put document routing rules on **Lead Engagement & Test Ride** (and optionally **Rider Insights**).
+
+### Ensure knowledge action is available
+
+1. Open subagent **Lead Engagement & Test Ride**.
+2. Under **Actions** (or **Actions Available for Reasoning**), confirm **Answer Question with Knowledge** is present.
+   - If missing: **Add action → Standard / Knowledge → Answer Question with Knowledge**.
+3. Keep your four SVT Flow actions on the same subagent.
+
+Repeat for **Rider Insights / Advisor Follow-up** only if you want document answers in Module 1.
 
 ---
 
@@ -111,7 +115,8 @@ OPERATIONAL RULES:
 - Check hasOpenTestRideTask if available; do not create duplicate open test-ride tasks.
 - When a task is created with consent, report emailSent status from the Flow.
 
-DOCUMENT GROUNDING (SVT Advisor Quick Guides Data Library):
+DOCUMENT GROUNDING (SVT Advisor Quick Guides — agent-level Data Library):
+- The agent has Data Library "SVT Advisor Quick Guides" attached. Use the Answer Question with Knowledge action for document lookups.
 - Use Flow actions for intent, dealer, consent, and task creation. NEVER infer these from PDFs.
 - Use the Data Library for: test ride process, model talking points, key specs on one-pagers, objection handling scripts.
 - Always cite the document title (e.g. "According to SVT Stride 200 Demo - Advisor One-Pager...").
@@ -189,7 +194,7 @@ Wait until Data Library files show **Ready** before testing document prompts.
 |---|---|
 | Data Library option missing in Setup | Enable Agentforce / Einstein; check org has Data Library entitlement |
 | Files stuck on Processing | Wait 15 min; re-upload one PDF; check file is valid PDF |
-| Agent doesn't cite documents | Confirm library attached to **subagent** (not only parent agent); files Ready |
+| Agent doesn't cite documents | Confirm **Data → Data Library** has SVT Advisor Quick Guides; files Ready; **Answer Question with Knowledge** on subagent |
 | Agent uses PDF for intent/dealer | Strengthen instructions: “NEVER infer intent from PDFs”; test prompt 1 again |
 | Invented specs (wrong kWh) | Re-test after indexing complete; verify A2 uploaded |
 | Flow works but document questions fail | Library not attached or still indexing |
@@ -201,7 +206,8 @@ Wait until Data Library files show **Ready** before testing document prompts.
 
 - [ ] 4 PDFs uploaded; all **Ready**
 - [ ] Library **`SVT Advisor Quick Guides`** created
-- [ ] Library attached to **Lead Engagement & Test Ride** subagent
+- [ ] Library **`SVT Advisor Quick Guides`** selected under agent **Data → Data Library**
+- [ ] **Answer Question with Knowledge** on Lead Engagement subagent
 - [ ] Instructions updated (Flows + document routing)
 - [ ] Agent **Activated**
 - [ ] Tests 1–2 pass (Flows)
