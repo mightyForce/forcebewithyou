@@ -57,7 +57,8 @@
 
 | File | Rows | Purpose |
 |---|---|---|
-| `svt_product_catalog.csv` | 12 | Model + variant specs |
+| `svt_product_catalog.csv` | 12 | Model + variant specs (Data Cloud or reference) |
+| `svt_product_catalog_crm.csv` | 12 | Same catalog — CRM `SVT Product__c` import layout |
 | `dealer_directory.csv` | 84 | 7 dealers × 12 SKUs |
 | `prospects.csv` | 12 | Prospect profiles |
 | `lead_intent_events.csv` | 24 | Website engagement / intent |
@@ -70,11 +71,13 @@
 
 ## Data Cloud ingest order
 
-1. `svt_product_catalog.csv` → **SVT Product Catalog** DMO (new)
-2. `dealer_directory.csv` → **SVT Dealer Directory**
-3. `prospects.csv` → **Individual** (+ contact points)
-4. `lead_intent_events.csv` → **Website Engagement**
-5. Rider files unchanged mapping
+1. `dealer_directory.csv` → **SVT Dealer Directory**
+2. `prospects.csv` → **Individual** (+ contact points)
+3. `lead_intent_events.csv` → **Website Engagement**
+4. Rider files unchanged mapping
+5. **Optional:** `svt_product_catalog.csv` → **SVT Product Catalog** DMO (agent specs only — not required for CRM Vehicle picklists)
+
+**CRM Vehicle picklists:** see [`svt-vehicle-product-catalog-setup.md`](../svt-vehicle-product-catalog-setup.md) — no Data Cloud stream needed.
 
 Re-import or replace streams after updating org data.
 
