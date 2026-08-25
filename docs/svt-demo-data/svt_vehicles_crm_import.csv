@@ -1,0 +1,7 @@
+Vehicle_Number__c,VIN__c,Primary_Rider_Email,Model_SKU__c,Registration_Date__c,Odometer__c,Last_Service_Date__c,Last_Service_Odometer_km__c,Warranty_End_Date__c,Preferred_Dealer_Dealer_ID__c,Status__c,Demo_Data__c,Source_Customer_Id__c
+SVT-VEH-2001,DEMO-VIN-SVT-2001,ananya.rao@example.test,SVT Stride 200 Demo,2024-08-12,10400,2026-01-20,7200,2027-08-11,DLR-4001,Active,true,SVT-1001
+SVT-VEH-2002,DEMO-VIN-SVT-2002,vikram.mehta@example.test,SVT Stride 200 Pro,2025-02-18,6200,2026-06-10,5100,2028-02-17,DLR-4002,Active,true,SVT-1002
+SVT-VEH-2003,DEMO-VIN-SVT-2003,meera.iyer@example.test,SVT Urban 125 Demo,2023-11-03,17200,2026-03-04,16800,2026-11-02,DLR-4003,Active,true,SVT-1003
+SVT-VEH-2004,DEMO-VIN-SVT-2004,arjun.kapoor@example.test,SVT Pulse 160 Standard,2022-07-29,25900,2026-02-14,22100,2025-07-28,DLR-4004,Active,true,SVT-1004
+SVT-VEH-2005,DEMO-VIN-SVT-2005,nisha.patel@example.test,SVT Nova 110 Lite,2025-01-16,3600,2026-07-01,2800,2028-01-15,DLR-4005,Active,true,SVT-1005
+SVT-VEH-2006,DEMO-VIN-SVT-2006,rahul.nair@example.test,SVT Apex 300 Sport,2024-04-21,12100,2026-04-22,9400,2027-04-20,DLR-4006,Active,true,SVT-1006
